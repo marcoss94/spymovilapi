@@ -13,6 +13,14 @@ function App() {
   const [login, setLogin] = useState(false)
   const [error, setError] = useState({})
   const [bool, setBool] = useState(true)
+  const [direccion, setDireccion] = useState({
+    nombre: 'asc',
+    cloro: 'asc',
+    ph: 'asc',
+    turbidez: 'asc',
+    fecha: 'asc',
+    tipo: 'asc'
+  })
 
 
   const cargarError = (isError) => {
@@ -29,6 +37,27 @@ function App() {
     setListado(lista)
   }
 
+  const sortBy = (key) => {
+    console.log(direccion[key])
+
+    if (key === "nombre") {
+
+    } else if (key === "cloro") {
+      setListado(listado.sort((a, b) => (direccion[key] === 'asc' ? parseFloat(a[key]) - parseFloat(b[key]) : parseFloat(b[key]) - parseFloat(a[key]))))
+    } else if (key === "ph") {
+
+    } else if (key === "turbidez") {
+
+    } else if (key === "fecha") {
+
+    } else if (key === "tipo") {
+
+    }
+    // setListado(listado.sort((a, b) => (direccion[key] === 'asc' ? a[key] - b[key] : b[key] - a[key])))
+    setDireccion(direccion[key] === 'asc' ? 'desc' : 'asc')
+    console.log(direccion[key])
+
+  }
 
 
 
@@ -49,7 +78,9 @@ function App() {
 
         <h1>SPYmovil</h1>
 
-        <List listado={listado}  ></List>
+        {/* {console.log(listado.sort((a, b) => parseFloat(a["cloro"]) - parseFloat(b["cloro"])))} */}
+        {/* {console.log(listado[0]["nombre"])} */}
+        <List listado={listado} sortBy={sortBy}  ></List>
       </header>
     </div>
   );

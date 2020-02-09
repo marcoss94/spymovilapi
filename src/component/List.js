@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-
-import { CardColumns, Card } from 'react-bootstrap';
+import { TiFilter } from "react-icons/ti";
+import { CardColumns, Card, Button } from 'react-bootstrap';
 
 export default class List extends Component {
 
@@ -89,6 +89,14 @@ export default class List extends Component {
                     />
                 </div>
 
+                <div className="form-group col-12">
+                    <Button onClick={() => this.props.sortBy('nombre')} variant="outline-light"><span><TiFilter /></span>Nombre</Button>
+                    <Button onClick={() => this.props.sortBy('cloro')} variant="outline-light"><span><TiFilter /></span>Cloro</Button>
+                    <Button onClick={() => this.props.sortBy('ph')} variant="outline-light"><span><TiFilter /></span>pH</Button>
+                    <Button onClick={() => this.props.sortBy('turbidez')} variant="outline-light"><span><TiFilter /></span>Turbidez</Button>
+                    <Button onClick={() => this.props.sortBy('fecha')} variant="outline-light"><span><TiFilter /></span>Fecha</Button>
+                    <Button onClick={() => this.props.sortBy('tipo')} variant="outline-light"><span><TiFilter /></span>Tipo</Button>
+                </div>
                 <CardColumns>
                     {
 

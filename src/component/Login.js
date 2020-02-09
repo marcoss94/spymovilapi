@@ -15,6 +15,7 @@ export default class Login extends Component {
         refresh: "",
         access: "",
         detail: "",
+        errorCredenciales: false,
         res: {}
     }
 
@@ -57,8 +58,9 @@ export default class Login extends Component {
                 this.setState({ access: result.access })
                 this.setState({ detail: result.detail })
 
-                console.log(result.detail)
+                // console.log(result.detail)
                 if (result.detail !== undefined || result.username !== undefined || result.password !== undefined) {
+                    this.setState({ errorCredenciales: true })
                     this.props.cargarError(result)
                     this.props.cargarBool(false)
 
@@ -89,7 +91,7 @@ export default class Login extends Component {
             .then(result => {
                 this.setState({ res: result })
 
-                if (result.detail !== undefined) {
+                if (result.detail !== undefined && !this.state.errorCredenciales) {
                     this.props.cargarError(result)
                     this.props.cargarBool(false)
 
@@ -97,7 +99,7 @@ export default class Login extends Component {
 
                 this.props.cargarListado(result)
                 this.props.logeado(true)
-                console.log(result)
+                // console.log(result)
 
                 // this.props.cargarError(result)
 
