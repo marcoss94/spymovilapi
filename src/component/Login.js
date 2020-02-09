@@ -14,6 +14,7 @@ export default class Login extends Component {
         password: "",
         refresh: "",
         access: "",
+        detail: "",
         res: {}
     }
 
@@ -56,26 +57,22 @@ export default class Login extends Component {
                 this.setState({ access: result.access })
                 this.setState({ detail: result.detail })
 
-                if (result.detail === "No active account found with the given credentials") {
-                    this.props.cargarError(result.detail)
-                }
+                console.log(result.detail)
+                if (result.detail !== undefined || result.username !== undefined || result.password !== undefined) {
+                    this.props.cargarError(result)
+                    this.props.cargarBool(false)
 
+                }
                 this.consulta();
+
+
 
             })
             .catch(error => console.log("erer"));
 
-
-
-
-
-
-
-
     }
 
     consulta = () => {
-        console.log(this.state.access)
         var myHeaders = new Headers();
         myHeaders.append("Authorization", "Bearer " + this.state.access);
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
@@ -91,12 +88,21 @@ export default class Login extends Component {
             .then(response => response.json())
             .then(result => {
                 this.setState({ res: result })
+
+                if (result.detail !== undefined) {
+                    this.props.cargarError(result)
+                    this.props.cargarBool(false)
+
+                }
+
                 this.props.cargarListado(result)
                 this.props.logeado(true)
+                console.log(result)
 
+                // this.props.cargarError(result)
 
             })
-            .catch(error => this.props.cargarError(true));
+            .catch(error => console.log(error));
 
     }
 

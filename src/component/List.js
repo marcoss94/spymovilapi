@@ -49,7 +49,7 @@ export default class List extends Component {
         }
 
         return (
-            <React.Fragment>
+            <React.Fragment key={id}>
                 <Card style={{ width: '18rem', color: "black" }}>
                     <Card.Body>
                         <Card.Title>Nombre: {nombre}</Card.Title>

@@ -11,11 +11,15 @@ function App() {
 
   const [listado, setListado] = useState([])
   const [login, setLogin] = useState(false)
-  const [error, setError] = useState("")
+  const [error, setError] = useState({})
+  const [bool, setBool] = useState(true)
 
 
   const cargarError = (isError) => {
     setError(isError)
+  }
+  const cargarBool = (isBool) => {
+    setBool(isBool)
   }
 
   const logeado = (isLogin) => {
@@ -29,12 +33,14 @@ function App() {
 
 
   if (!login) {
-    return <Login cargarListado={cargarListado} logeado={logeado} cargarError={cargarError} ></Login>
+    return <Login cargarListado={cargarListado} logeado={logeado} cargarError={cargarError} cargarBool={cargarBool} ></Login>
   }
 
-  // if (!error) {
-  //   return <FatalError />
-  // }
+  console.log(error)
+  console.log(bool)
+  if (!bool) {
+    return <FatalError error={error} />
+  }
 
 
   return (
@@ -42,7 +48,7 @@ function App() {
       <header className="App-header">
 
         <h1>SPYmovil</h1>
-        <p>{error}</p>
+
         <List listado={listado}  ></List>
       </header>
     </div>
