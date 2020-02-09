@@ -4,6 +4,8 @@ import React, { Component } from 'react'
 
 
 
+
+
 export default class Login extends Component {
 
 
@@ -26,6 +28,8 @@ export default class Login extends Component {
     handleSubmit = event => {
         event.preventDefault()
 
+
+
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
@@ -41,17 +45,29 @@ export default class Login extends Component {
         };
 
 
-        // console.log(JSON.stringify(this.state))
+
 
         fetch("http://api.spymovil.com/auth/token/", requestOptions)
             .then(response => response.json())
             .then(result => {
-                // console.log(result)
+
+
                 this.setState({ refresh: result.refresh })
                 this.setState({ access: result.access })
+                this.setState({ detail: result.detail })
+
+                if (result.detail === "No active account found with the given credentials") {
+                    this.props.cargarError(result.detail)
+                }
+
                 this.consulta();
+
             })
-            .catch(error => console.log('error', error));
+            .catch(error => console.log("erer"));
+
+
+
+
 
 
 
@@ -70,15 +86,18 @@ export default class Login extends Component {
             redirect: 'follow'
         };
 
+
         fetch("http://api.spymovil.com/data/online/", requestOptions)
             .then(response => response.json())
             .then(result => {
                 this.setState({ res: result })
-
+                this.props.cargarListado(result)
+                this.props.logeado(true)
 
 
             })
-            .catch(error => console.log('error', error));
+            .catch(error => this.props.cargarError(true));
+
     }
 
 
@@ -108,8 +127,8 @@ export default class Login extends Component {
 
                     <input type='submit' />
                 </form>
-                {console.log(this.state.res)}
-                {console.log(this.props.listado)}
+
+
 
 
             </div >
