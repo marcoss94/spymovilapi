@@ -1,10 +1,5 @@
 import React, { Component } from 'react'
-
-
-
-
-
-
+// import useFetch from './useFecth';
 
 export default class Login extends Component {
 
@@ -29,6 +24,11 @@ export default class Login extends Component {
 
     handleSubmit = event => {
         event.preventDefault()
+
+        // const { aux, error } = useFetch(this.state)
+
+        // this.props.cargarError(error)
+        // console.log("prueba" + error)
 
 
 
@@ -62,7 +62,7 @@ export default class Login extends Component {
                 if (result.detail !== undefined || result.username !== undefined || result.password !== undefined) {
                     this.setState({ errorCredenciales: true })
                     this.props.cargarError(result)
-                    this.props.cargarBool(false)
+                    this.props.cargarBoolError(false)
 
                 }
                 this.consulta();
@@ -75,6 +75,7 @@ export default class Login extends Component {
     }
 
     consulta = () => {
+        console.log("se ejecuto ")
         var myHeaders = new Headers();
         myHeaders.append("Authorization", "Bearer " + this.state.access);
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
@@ -93,7 +94,7 @@ export default class Login extends Component {
 
                 if (result.detail !== undefined && !this.state.errorCredenciales) {
                     this.props.cargarError(result)
-                    this.props.cargarBool(false)
+                    this.props.cargarBoolError(false)
 
                 }
 
@@ -107,9 +108,14 @@ export default class Login extends Component {
             .catch(error => console.log(error));
 
     }
+    // prueba = () => {
+    //     console.log("prueba")
+    // }
 
 
     render() {
+
+        // setInterval(this.prueba(), 6000);
 
         return (
             <div>

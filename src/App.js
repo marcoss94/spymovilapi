@@ -12,7 +12,7 @@ function App() {
   const [listado, setListado] = useState([])
   const [login, setLogin] = useState(false)
   const [error, setError] = useState({})
-  const [bool, setBool] = useState(true)
+  const [boolError, setBoolError] = useState(true)
   const [direccion, setDireccion] = useState({
     nombre: 'asc',
     cloro: 'asc',
@@ -25,9 +25,11 @@ function App() {
 
   const cargarError = (isError) => {
     setError(isError)
+    console.log(error)
   }
-  const cargarBool = (isBool) => {
-    setBool(isBool)
+  const cargarBoolError = (isBool) => {
+    setBoolError(isBool)
+
   }
 
   const logeado = (isLogin) => {
@@ -68,12 +70,12 @@ function App() {
 
 
   if (!login) {
-    return <Login cargarListado={cargarListado} logeado={logeado} cargarError={cargarError} cargarBool={cargarBool} ></Login>
+    return <Login cargarListado={cargarListado} logeado={logeado} cargarError={cargarError} cargarBoolError={cargarBoolError} ></Login>
   }
 
   console.log(error)
-  console.log(bool)
-  if (!bool) {
+  console.log(boolError)
+  if (!boolError) {
     return <FatalError error={error} />
   }
 
