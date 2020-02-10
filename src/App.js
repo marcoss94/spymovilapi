@@ -40,21 +40,27 @@ function App() {
   const sortBy = (key) => {
     console.log(direccion[key])
 
-    if (key === "nombre") {
+    if (key === "nombre" || key === "fecha") {
+      setListado(listado.sort((a, b) => {
+        var x = a[key].toLowerCase();
+        var y = b[key].toLowerCase();
+        if (direccion[key] === 'asc') {
+          if (x < y) { return -1; }
+          if (x > y) { return 1; }
+          return 0;
+        } else {
+          if (y < x) { return -1; }
+          if (y > x) { return 1; }
+          return 0;
+        }
+      }))
 
-    } else if (key === "cloro") {
+    } else if (key === "cloro" || key === "ph" || key === "turbidez") {
       setListado(listado.sort((a, b) => (direccion[key] === 'asc' ? parseFloat(a[key]) - parseFloat(b[key]) : parseFloat(b[key]) - parseFloat(a[key]))))
-    } else if (key === "ph") {
-
-    } else if (key === "turbidez") {
-
-    } else if (key === "fecha") {
-
     } else if (key === "tipo") {
-
+      setListado(listado.sort((a, b) => (direccion[key] === 'asc' ? parseFloat(a[key].id) - parseFloat(b[key].id) : parseFloat(b[key].id) - parseFloat(a[key].id))))
     }
-    // setListado(listado.sort((a, b) => (direccion[key] === 'asc' ? a[key] - b[key] : b[key] - a[key])))
-    setDireccion(direccion[key] === 'asc' ? 'desc' : 'asc')
+    setDireccion(direccion[key] === 'asc' ? { [key]: 'desc' } : { [key]: 'asc' })
     console.log(direccion[key])
 
   }
@@ -77,9 +83,6 @@ function App() {
       <header className="App-header">
 
         <h1>SPYmovil</h1>
-
-        {/* {console.log(listado.sort((a, b) => parseFloat(a["cloro"]) - parseFloat(b["cloro"])))} */}
-        {/* {console.log(listado[0]["nombre"])} */}
         <List listado={listado} sortBy={sortBy}  ></List>
       </header>
     </div>

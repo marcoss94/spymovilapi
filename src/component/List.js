@@ -57,10 +57,10 @@ export default class List extends Component {
                             Cloro: {cloro}
                         </Card.Text>
                         <Card.Text>
-                            Ph: {mostrarPh()}
+                            Ph: {ph} {mostrarPh()}
                         </Card.Text>
                         <Card.Text>
-                            Turbidez: {mostrarTurbidez()}
+                            Turbidez: {turbidez} {mostrarTurbidez()}
                         </Card.Text>
                         <Card.Text>
                             Fecha: {fecha}
