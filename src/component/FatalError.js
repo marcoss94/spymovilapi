@@ -4,6 +4,7 @@ import React from 'react'
 
 const FatalError = (props) => {
 
+    console.log(props.error)
     if (props.boolError) {
         return null
     }
@@ -17,6 +18,9 @@ const FatalError = (props) => {
 
     if (props.error.detail !== undefined) {
         return <h1>{props.error.detail}</h1>
+    }
+    if (props.error.refresh !== undefined) {
+        return <h1>{"Refresh: " + props.error.refresh}</h1>
     }
     return (
         <div>

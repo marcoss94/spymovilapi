@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import Loading from './Loading';
-// import useFetch from './useFecth';
+import useFetch from '../hooks/useFecth';
 import FatalError from './FatalError';
+import FormLogin from './FormLogin';
 
 export default class Login extends Component {
+
 
 
     state = {
@@ -16,8 +18,10 @@ export default class Login extends Component {
         res: {},
         load: false,
         error: {},
-        boolError: true
+        boolError: true,
+        errorRefresh: false
     }
+
 
 
 
@@ -29,6 +33,7 @@ export default class Login extends Component {
 
     handleSubmit = event => {
         event.preventDefault()
+
         this.setState({ error: {} })
         this.setState({ boolError: true })
 
@@ -54,9 +59,6 @@ export default class Login extends Component {
             redirect: 'follow'
         };
 
-
-
-
         fetch("http://api.spymovil.com/auth/token/", requestOptions)
             .then(response => response.json())
             .then(result => {
@@ -71,7 +73,7 @@ export default class Login extends Component {
                     this.setState({ errorCredenciales: true })
                     this.setState({ error: result })
                     this.setState({ boolError: false })
-
+                    console.log("primer fetch: " + this.state.error)
 
 
                     // this.props.cargarError(result)
@@ -79,14 +81,14 @@ export default class Login extends Component {
 
                 }
                 this.setState({ load: false })
-                this.consulta();
+                this.consultaRefresh();
 
             })
             .catch(error => {
                 this.setState({ error: "El servidor no responde" })
                 this.setState({ boolError: false })
-                this.consulta();
-                console.log("despues de consukta()")
+                this.consultaRefresh();
+                console.log("despues de consulta()")
                 // this.props.cargarError(error)
                 // this.props.cargarBoolError(false)
 
@@ -94,7 +96,65 @@ export default class Login extends Component {
 
     }
 
-    consulta = () => {
+    consultaRefresh = () => {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("refresh", this.state.refresh);
+
+        console.log("asdasdasdasd" + this.state.refresh)
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: urlencoded,
+            redirect: 'follow'
+        };
+
+        fetch("http://api.spymovil.com/auth/token/refresh/", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+
+                if (!this.state.errorCredenciales) {
+                    this.setState({ access: result.access })
+                    this.setState({ detail: result.detail })
+
+                    console.log(this.state.access)
+                    console.log(result)
+
+
+
+
+                    if (result.detail !== undefined || result.refresh !== undefined) {
+                        this.setState({ error: result })
+                        this.setState({ boolError: false })
+                        console.log("segundo fetch: " + this.state.error)
+                        this.setState({ errorRefresh: true })
+                        // this.props.cargarError(result)
+                        // this.props.cargarBoolError(false)
+
+                    }
+                }
+                // console.log(result.detail)
+
+
+                this.setState({ load: false })
+                this.consultaDatos();
+
+            })
+            .catch(error => {
+                this.setState({ error: "El servidor no responde" })
+                this.setState({ boolError: false })
+                this.consultaDatos();
+                console.log("despues de consulta()")
+                // this.props.cargarError(error)
+                // this.props.cargarBoolError(false)
+
+            });
+    }
+
+    consultaDatos = () => {
 
         this.setState({ load: true })
         console.log("se ejecuto ")
@@ -114,10 +174,10 @@ export default class Login extends Component {
             .then(result => {
                 this.setState({ res: result })
 
-                if (result.detail !== undefined && !this.state.errorCredenciales) {
+                if (result.detail !== undefined && !this.state.errorCredenciales && !this.state.errorRefresh) {
                     this.setState({ error: result })
                     this.setState({ boolError: false })
-
+                    console.log("tercer fetch: " + this.state.error)
                     // this.props.cargarError(result)
                     // this.props.cargarBoolError(false)
 
@@ -154,12 +214,13 @@ export default class Login extends Component {
 
         // setInterval(this.prueba(), 6000);
 
-
-
+        // const { aux, refresh } = useFetch(this.state)
+        // console.log(aux)
+        // console.log(refresh)
 
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                {/* <form onSubmit={this.handleSubmit}>
                     <h1>Login</h1>
 
                     <label>Username</label>
@@ -180,7 +241,9 @@ export default class Login extends Component {
                     /><br />
 
                     <input type='submit' />
-                </form>
+                </form> */}
+
+                <FormLogin handleChange={this.handleChange} handleSubmit={this.handleSubmit} state={this.state}></FormLogin>
 
                 <FatalError error={this.state.error} boolError={this.state.boolError}></FatalError>
 
