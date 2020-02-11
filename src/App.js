@@ -3,7 +3,7 @@ import './App.css';
 import Login from './component/Login';
 import List from './component/List';
 
-import FatalError from './component/FatalError';
+
 
 
 
@@ -11,8 +11,8 @@ function App() {
 
   const [listado, setListado] = useState([])
   const [login, setLogin] = useState(false)
-  const [error, setError] = useState({})
-  const [boolError, setBoolError] = useState(true)
+
+
   const [direccion, setDireccion] = useState({
     nombre: 'asc',
     cloro: 'asc',
@@ -22,15 +22,6 @@ function App() {
     tipo: 'asc'
   })
 
-
-  const cargarError = (isError) => {
-    setError(isError)
-    console.log(error)
-  }
-  const cargarBoolError = (isBool) => {
-    setBoolError(isBool)
-
-  }
 
   const logeado = (isLogin) => {
     setLogin(isLogin)
@@ -70,14 +61,10 @@ function App() {
 
 
   if (!login) {
-    return <Login cargarListado={cargarListado} logeado={logeado} cargarError={cargarError} cargarBoolError={cargarBoolError} ></Login>
+    return <Login cargarListado={cargarListado} logeado={logeado} ></Login>
   }
 
-  console.log(error)
-  console.log(boolError)
-  if (!boolError) {
-    return <FatalError error={error} />
-  }
+
 
 
   return (

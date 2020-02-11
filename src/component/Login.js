@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import Loading from './Loading';
 // import useFetch from './useFecth';
+import FatalError from './FatalError';
 
 export default class Login extends Component {
 
@@ -11,7 +13,10 @@ export default class Login extends Component {
         access: "",
         detail: "",
         errorCredenciales: false,
-        res: {}
+        res: {},
+        load: false,
+        error: {},
+        boolError: true
     }
 
 
@@ -24,7 +29,10 @@ export default class Login extends Component {
 
     handleSubmit = event => {
         event.preventDefault()
+        this.setState({ error: {} })
+        this.setState({ boolError: true })
 
+        this.setState({ load: true })
         // const { aux, error } = useFetch(this.state)
 
         // this.props.cargarError(error)
@@ -61,20 +69,34 @@ export default class Login extends Component {
                 // console.log(result.detail)
                 if (result.detail !== undefined || result.username !== undefined || result.password !== undefined) {
                     this.setState({ errorCredenciales: true })
-                    this.props.cargarError(result)
-                    this.props.cargarBoolError(false)
+                    this.setState({ error: result })
+                    this.setState({ boolError: false })
+
+
+
+                    // this.props.cargarError(result)
+                    // this.props.cargarBoolError(false)
 
                 }
+                this.setState({ load: false })
                 this.consulta();
 
-
-
             })
-            .catch(error => console.log("erer"));
+            .catch(error => {
+                this.setState({ error: "El servidor no responde" })
+                this.setState({ boolError: false })
+                this.consulta();
+                console.log("despues de consukta()")
+                // this.props.cargarError(error)
+                // this.props.cargarBoolError(false)
+
+            });
 
     }
 
     consulta = () => {
+
+        this.setState({ load: true })
         console.log("se ejecuto ")
         var myHeaders = new Headers();
         myHeaders.append("Authorization", "Bearer " + this.state.access);
@@ -93,19 +115,34 @@ export default class Login extends Component {
                 this.setState({ res: result })
 
                 if (result.detail !== undefined && !this.state.errorCredenciales) {
-                    this.props.cargarError(result)
-                    this.props.cargarBoolError(false)
+                    this.setState({ error: result })
+                    this.setState({ boolError: false })
+
+                    // this.props.cargarError(result)
+                    // this.props.cargarBoolError(false)
+
+                } else {
+                    this.props.cargarListado(result)
+
 
                 }
 
-                this.props.cargarListado(result)
-                this.props.logeado(true)
+                if (this.state.boolError) {
+                    this.props.logeado(true)
+                }
+                this.setState({ load: false })
                 // console.log(result)
 
                 // this.props.cargarError(result)
 
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+
+                this.setState({ error: "El servidor no responde" })
+                this.setState({ boolError: false })
+                this.setState({ load: false })
+
+            })
 
     }
     // prueba = () => {
@@ -116,6 +153,9 @@ export default class Login extends Component {
     render() {
 
         // setInterval(this.prueba(), 6000);
+
+
+
 
         return (
             <div>
@@ -142,6 +182,9 @@ export default class Login extends Component {
                     <input type='submit' />
                 </form>
 
+                <FatalError error={this.state.error} boolError={this.state.boolError}></FatalError>
+
+                <Loading load={this.state.load}></Loading>
 
 
 
