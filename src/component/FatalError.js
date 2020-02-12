@@ -1,10 +1,7 @@
 import React from 'react'
 
-
-
 const FatalError = (props) => {
 
-    console.log(props.error)
     if (props.boolError) {
         return null
     }
@@ -15,7 +12,6 @@ const FatalError = (props) => {
     if (props.error.password !== undefined) {
         return <h1>{"Contraseña: " + props.error.password}</h1>
     }
-
     if (props.error.detail !== undefined) {
         return <h1>{props.error.detail}</h1>
     }
@@ -28,8 +24,5 @@ const FatalError = (props) => {
         </div>
     )
 }
-
-
-
 
 export default FatalError

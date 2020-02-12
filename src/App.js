@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import './App.css';
 import Login from './component/Login';
 import List from './component/List';
-
+import './App.css';
 
 function App() {
 
-  const [listado, setListado] = useState([])
-  const [login, setLogin] = useState(false)
-
+  const [listado, setListado] = useState([]);
+  const [login, setLogin] = useState(false);
 
   const [direccion, setDireccion] = useState({
     nombre: 'asc',
@@ -19,19 +17,15 @@ function App() {
     tipo: 'asc'
   })
 
-
   const logeado = (isLogin) => {
-    setLogin(isLogin)
+    setLogin(isLogin);
   }
   const cargarListado = (lista) => {
-    setListado([])
-    console.log("se limpio la lista")
-    setListado(lista)
+    setListado([]);
+    setListado(lista);
   }
 
   const sortBy = (key) => {
-    console.log(direccion[key])
-
     if (key === "nombre" || key === "fecha") {
       setListado(listado.sort((a, b) => {
         var x = a[key].toLowerCase();
@@ -48,16 +42,13 @@ function App() {
       }))
 
     } else if (key === "cloro" || key === "ph" || key === "turbidez") {
-      setListado(listado.sort((a, b) => (direccion[key] === 'asc' ? parseFloat(a[key]) - parseFloat(b[key]) : parseFloat(b[key]) - parseFloat(a[key]))))
+      setListado(listado.sort((a, b) => (direccion[key] === 'asc' ? parseFloat(a[key]) - parseFloat(b[key]) : parseFloat(b[key]) - parseFloat(a[key]))));
     } else if (key === "tipo") {
-      setListado(listado.sort((a, b) => (direccion[key] === 'asc' ? parseFloat(a[key].id) - parseFloat(b[key].id) : parseFloat(b[key].id) - parseFloat(a[key].id))))
+      setListado(listado.sort((a, b) => (direccion[key] === 'asc' ? parseFloat(a[key].id) - parseFloat(b[key].id) : parseFloat(b[key].id) - parseFloat(a[key].id))));
     }
-    setDireccion(direccion[key] === 'asc' ? { [key]: 'desc' } : { [key]: 'asc' })
-    console.log(direccion[key])
+    setDireccion(direccion[key] === 'asc' ? { [key]: 'desc' } : { [key]: 'asc' });
 
   }
-
-
 
   if (!login) {
     return <Login cargarListado={cargarListado} logeado={logeado} ></Login>
