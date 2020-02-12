@@ -1,31 +1,31 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import { Form, Button } from 'react-bootstrap';
 
 
 const FormLogin = props => {
 
     return (
-        <form onSubmit={props.handleSubmit}>
-            <h1>Login</h1>
 
-            <label>Username</label>
-            <input
-                name='username'
-                placeholder='Username'
-                value={props.username}
-                onChange={props.handleChange}
-            /><br />
+        <Form onSubmit={props.handleSubmit}>
 
-            <label>Password</label>
-            <input
-                type='password'
-                name='password'
-                placeholder='Password'
-                value={props.password}
-                onChange={props.handleChange}
-            /><br />
+            <Form.Group controlId="formBasicEmail">
+                <h1>Login</h1>
+                <Form.Label>Usuario</Form.Label>
+                <Form.Control type="text" value={props.username} name='username' placeholder="Ingrese nombre de usuario" onChange={props.handleChange} />
 
-            <input type='submit' />
-        </form>
+            </Form.Group>
+
+            <Form.Group controlId="formBasicPassword">
+                <Form.Label>Contraseña</Form.Label>
+                <Form.Control type="password" name='password' placeholder="Contraseña" value={props.password} onChange={props.handleChange} />
+            </Form.Group>
+
+            <Button variant="primary" type="submit">
+                Enviar
+            </Button>
+
+        </Form>
+
     )
 }
 

@@ -1,5 +1,5 @@
 .loader {
-    font-size: 10px;
+    font-size: 5px;
     margin: 50px auto;
     text-indent: -9999em;
     width: 11em;
@@ -12,6 +12,7 @@
     background: -ms-linear-gradient(left, #2bd5cc 10%, rgba(43, 213, 204, 0) 42%);
     background: linear-gradient(to right, #2bd5cc 10%, rgba(43, 213, 204, 0) 42%);
     position: relative;
+    overflow: hidden;
     -webkit-animation: load3 1.4s infinite linear;
     animation: load3 1.4s infinite linear;
     -webkit-transform: translateZ(0);
@@ -31,7 +32,7 @@
 }
 
 .loader:after {
-    background: #ffffff;
+    background: #282c34;
     width: 75%;
     height: 75%;
     border-radius: 50%;

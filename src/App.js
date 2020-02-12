@@ -4,9 +4,6 @@ import Login from './component/Login';
 import List from './component/List';
 
 
-
-
-
 function App() {
 
   const [listado, setListado] = useState([])
@@ -27,6 +24,8 @@ function App() {
     setLogin(isLogin)
   }
   const cargarListado = (lista) => {
+    setListado([])
+    console.log("se limpio la lista")
     setListado(lista)
   }
 
@@ -64,15 +63,13 @@ function App() {
     return <Login cargarListado={cargarListado} logeado={logeado} ></Login>
   }
 
-
-
-
   return (
     <div className="App">
       <header className="App-header">
-
-        <h1>SPYmovil</h1>
-        <List listado={listado} sortBy={sortBy}  ></List>
+        <div className="container-fluid">
+          <h1>SPYmovil</h1>
+          <List listado={listado} sortBy={sortBy}  ></List>
+        </div>
       </header>
     </div>
   );
