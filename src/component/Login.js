@@ -3,6 +3,8 @@ import Loading from './Loading';
 import FatalError from './FatalError';
 import FormLogin from './FormLogin';
 import '../App.css';
+import '../styles/Login.css';
+
 
 export default class Login extends Component {
 
@@ -200,10 +202,15 @@ export default class Login extends Component {
             <div className="App">
                 <header className="App-header">
                     <div className="container-fluid">
-                        <div>
+                        <div className="login">
                             <FormLogin handleChange={this.handleChange} handleSubmit={this.handleSubmit} state={this.state}></FormLogin>
-                            <FatalError error={this.state.error} boolError={this.state.boolError}></FatalError>
-                            <Loading load={this.state.load}></Loading>
+
+                            <div className="error">
+                                <FatalError error={this.state.error} boolError={this.state.boolError}></FatalError>
+                            </div>
+                            <div className="load">
+                                <Loading load={this.state.load}></Loading>
+                            </div>
                         </div >
                     </div>
                 </header>

@@ -59,7 +59,7 @@ function App() {
       <header className="App-header">
         <div className="container-fluid">
           <h1>SPYmovil</h1>
-          <List listado={listado} sortBy={sortBy}  ></List>
+          <List listado={listado} sortBy={sortBy} direccion={direccion}  ></List>
         </div>
       </header>
     </div>

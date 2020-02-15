@@ -1,0 +1,45 @@
+.form-login .avatar {
+    width: 200px;
+    position: absolute;
+    top: 10px;
+    left: calc(50% - 100px);
+}
+
+.form-login h1 {
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 33px;
+}
+
+.form-login label {
+    margin: 0;
+    padding: 0;
+    display: block;
+    font-weight: bold;
+}
+
+.form-login input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.form-login input[type="text"],
+.form-login input[type="password"] {
+    border: none;
+    border-bottom: 1px solid #000;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    font-size: 16px;
+}
+
+.form-login input[type="submit"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    background-color: #033F7C;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
