@@ -18,7 +18,8 @@ const FormLogin = props => {
                 <label htmlFor="password">Contraseña:</label>
                 <input type="password" name='password' placeholder="Contraseña" value={props.password} onChange={props.handleChange} />
 
-                <input type="submit" value="Enviar" />
+                <input className="botonSubmit" type="submit" value="Enviar" />
+
             </form>
         </div>
 

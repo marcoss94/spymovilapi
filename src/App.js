@@ -57,8 +57,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div className="container-fluid">
-          <h1>SPYmovil</h1>
+        <div className="contenedor">
           <List listado={listado} sortBy={sortBy} direccion={direccion}  ></List>
         </div>
       </header>

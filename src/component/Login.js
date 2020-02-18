@@ -201,18 +201,18 @@ export default class Login extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <div className="container-fluid">
-                        <div className="login">
-                            <FormLogin handleChange={this.handleChange} handleSubmit={this.handleSubmit} state={this.state}></FormLogin>
 
-                            <div className="error">
-                                <FatalError error={this.state.error} boolError={this.state.boolError}></FatalError>
-                            </div>
-                            <div className="load">
-                                <Loading load={this.state.load}></Loading>
-                            </div>
-                        </div >
-                    </div>
+                    <div className="login">
+                        <FormLogin handleChange={this.handleChange} handleSubmit={this.handleSubmit} state={this.state}></FormLogin>
+
+                        <div className="error">
+                            <FatalError error={this.state.error} boolError={this.state.boolError}></FatalError>
+                        </div>
+                        <div className="load">
+                            <Loading load={this.state.load}></Loading>
+                        </div>
+                    </div >
+
                 </header>
             </div >
         )
