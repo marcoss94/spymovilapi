@@ -1,9 +1,6 @@
 .App {
   margin: 0px;
   padding: 0px;
-  /* width: 100%;
-  height: 100%; */
-  /* font-family: sofia-pro, sans-serif; */
   font-family: 'Raleway', sans-serif;
   position: relative;
 
@@ -12,8 +9,6 @@
 .App-header {
   background-color: #022446;
   min-height: 100vh;
-
-  /* font-size: calc(10px + 2vmin); */
   color: white;
 }
 
@@ -23,27 +18,21 @@
   gap: 1em;
 }
 
-
-
 .cabecera {
   padding: 1rem;
-  /* descomentar la linea y comentar la otra, esto es para probar el avatar y los botones. Para poner el efecto de agua */
   background-color: #fff;
-  /* background-color: rgb(2, 36, 70); */
   color: #000;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1em;
   row-gap: 4em;
   position: relative;
-
 }
 
 .user-avatar-box .user-avatar {
   width: 50px;
   height: 50px;
   border-radius: 50px;
-
 }
 
 .filtro button {
@@ -54,15 +43,12 @@
   border: 1px solid #fff;
   margin-right: 1em;
   transition: color 0.4s, background 0.4s;
-
 }
-
 
 .filtro button:hover {
   background: #fff;
   color: #033F7C;
 }
-
 
 .cabecera .titulo {
 
@@ -91,7 +77,6 @@
   align-self: center;
   justify-self: center;
   z-index: 99999;
-
 }
 
 .buscarResponsive {
@@ -107,15 +92,11 @@
 }
 
 .cabecera .wave {
-  /* grid-column: span 3; */
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-
 }
-
-
 
 /* tarjetas  */
 
@@ -182,16 +163,11 @@
 .prop-cloro,
 .prop-ph,
 .prop-turbidez {
-  /* background-color: red; */
-
   -webkit-mask: url(images/water-tank.svg) no-repeat 100% 100%;
   background: url(images/water-tank.svg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-
-  /* border: 1px solid #000; */
-
 }
 
 .prop {
@@ -201,7 +177,6 @@
   padding: 0.5em;
   height: 110px;
   width: 110px;
-
 }
 
 .prop p {
@@ -220,7 +195,6 @@
   background-color: violet;
   animation: animacion 2s;
   transform: translateY(10%);
-
 }
 
 .liquido-ph {
@@ -234,7 +208,6 @@
   background-color: rgb(51, 209, 30);
   animation: animacion 2s;
   transform: translateY(10%);
-
 }
 
 .liquido-turbidez {
@@ -248,7 +221,6 @@
   background-color: rgb(0, 243, 243);
   animation: animacion 2s;
   transform: translateY(10%);
-
 }
 
 .liquido-silueta {
@@ -263,7 +235,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-
 }
 
 @keyframes animacion {
@@ -279,13 +250,10 @@
 
 /*  */
 
-
 @media (max-width: 1287px) {
   .buscarResponsive {
     display: none;
   }
-
-
 
   .prop {
     outline: none;
@@ -294,10 +262,7 @@
     padding: 0.5em;
     height: 90px;
     width: 90px;
-
   }
-
-
 }
 
 .error h1 {
@@ -314,7 +279,6 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 1em;
     justify-items: stretch;
-
   }
 
   .prop {
@@ -324,7 +288,6 @@
     padding: 0.5em;
     height: 120px;
     width: 120px;
-
   }
 }
 
@@ -336,7 +299,6 @@
     padding: 0.5em;
     height: 110px;
     width: 110px;
-
   }
 }
 
@@ -348,15 +310,12 @@
     padding: 0.5em;
     height: 90px;
     width: 90px;
-
   }
 }
 
 @media (max-width: 788px) {
-
   .cabecera {
     padding: 1rem;
-    /* background-color: #fff; */
     color: #000;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -378,11 +337,9 @@
     justify-self: center;
     align-self: center;
     font-size: 0.7em;
-
   }
 
   .cabecera .titulo {
-
     text-align: start;
     align-self: center;
     font-size: 32px;
@@ -391,14 +348,11 @@
   .cabecera .logout {
     align-self: center;
     justify-self: end;
-
   }
 
   .error h1 {
     font-size: 16px;
   }
-
-
 
   .grid-lista {
     display: grid;
@@ -413,8 +367,7 @@
     overflow: hidden;
     padding: 0.5em;
     height: 120px;
-    width: 120px;
-
+    width: 120px
   }
 }
 
@@ -456,17 +409,13 @@
 }
 
 @media (max-width: 460px) {
-
   .cabecera .wave {
-    /* grid-column: span 3; */
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 276px;
-
     overflow: hidden;
-
     width: 269%;
   }
 
@@ -477,6 +426,5 @@
     padding: 0.5em;
     height: 70px;
     width: 70px;
-
   }
 }

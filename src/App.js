@@ -7,7 +7,6 @@ function App() {
 
   const [listado, setListado] = useState([]);
   const [login, setLogin] = useState(false);
-
   const [direccion, setDireccion] = useState({
     nombre: 'asc',
     cloro: 'asc',

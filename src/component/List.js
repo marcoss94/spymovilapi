@@ -50,6 +50,7 @@ export default class List extends Component {
                 return "linear-gradient(0deg, rgba(62,218,255,1) 0%, rgba(245,255,0,0.779131635564382) 57%)";
             }
         }
+
         const mostrarGradienteTurbiadez = () => {
             if (turbidez <= 3) {
                 return "linear-gradient(0deg, rgba(62,218,255,0.9415966215587798) 34%, rgba(255,255,255,0.8043417195979954) 100%)";
@@ -82,14 +83,14 @@ export default class List extends Component {
 
         const mostrarTurbidez = () => {
             if (turbidez >= 0 && turbidez <= 3) {
-                return "Limpio"
+                return "Limpio";
             } else if (turbidez > 3 && turbidez <= 10) {
-                return "Sucio"
-            } else return "Error en Turbidez"
+                return "Sucio";
+            } else return "Error en Turbidez";
         }
 
         if (this.state.termino !== "" && nombre.toLowerCase().indexOf(this.state.termino.toLowerCase()) === -1) {
-            return null
+            return null;
         }
 
         return (
@@ -107,24 +108,38 @@ export default class List extends Component {
                                 <div className="card-text">Turbidez</div>
                                 <div className="prop prop-cloro" >
                                     <div className="liquido-cloro" style={{ background: `${mostrarGradienteCloro()}` }}></div>
-                                    {/* <div className="liquido-silueta"></div> */}
-                                    <p><strong>{cloro} <br />ppm</strong></p>
+                                    <p>
+                                        <strong>
+                                            {cloro}
+                                            <br />
+                                            ppm
+                                        </strong>
+                                    </p>
                                 </div>
                                 <div className="prop prop-ph" >
                                     <div className="liquido-ph " style={{ background: `${mostrarGradientePH()}` }}></div>
-                                    {/* <div className="liquido-silueta"></div> */}
-                                    <p><strong>{ph} </strong></p>
+                                    <p>
+                                        <strong>
+                                            {ph}
+                                        </strong>
+                                    </p>
                                 </div>
                                 <div className="prop prop-turbidez" >
                                     <div className="liquido-turbidez" style={{ background: `${mostrarGradienteTurbiadez()}` }}></div>
-                                    {/* <div className="liquido-silueta"></div> */}
-                                    <p><strong> {turbidez} <br />ntu </strong></p>
+                                    <p>
+                                        <strong>
+                                            {turbidez} <br />
+                                            ntu
+                                        </strong>
+                                    </p>
                                 </div>
                                 <div className="card-text"></div>
                                 <div className="card-text"><p>{mostrarPh()}</p></div>
                                 <div className="card-text"><p>{mostrarTurbidez()}</p></div>
                             </div>
-                            <div className="tipo"><h5>{tipo.nombre}</h5></div>
+                            <div className="tipo">
+                                <h5>{tipo.nombre}</h5>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -154,7 +169,6 @@ export default class List extends Component {
                         <div className="user-avatar-box">
                             <img className="user-avatar" src={userAvatar} alt="avatar del usuario" />
                         </div>
-
                     </div>
                     <div className="buscarResponsive">
                         <input
